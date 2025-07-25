@@ -27,4 +27,4 @@ issues: https://github.com/esp-idf-lib/ds3231/issues
 discussion: https://github.com/esp-idf-lib/core/discussions
 files:
   exclude:
-    - docs
+    - docs/**/*
