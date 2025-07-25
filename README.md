@@ -11,7 +11,7 @@ Driver for DS1337 RTC and DS3231 high precision RTC module.
 ## Installation
 
 ```sh
-idf.py add-dependency "esp-idf-lib/ds3231^1.1.0
+idf.py add-dependency esp-idf-lib/ds3231^1.1.0
 ```
 
 ## Support
