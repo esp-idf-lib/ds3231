@@ -72,7 +72,8 @@
 
 #define CHECK_ARG(ARG) do { if (!(ARG)) return ESP_ERR_INVALID_ARG; } while (0)
 
-enum {
+enum
+{
     DS3231_SET = 0,
     DS3231_CLEAR,
     DS3231_REPLACE
@@ -95,7 +96,7 @@ static uint8_t dec2bcd(uint8_t val)
 static inline int days_since_january_1st(int year, int month, int day)
 {
     int days = day - 1;
-    const int *ptr = days_per_month; 
+    const int *ptr = days_per_month;
 
     // Handle leap year
     if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
@@ -156,7 +157,7 @@ esp_err_t ds3231_set_time(i2c_dev_t *dev, struct tm *time)
 }
 
 esp_err_t ds3231_set_alarm(i2c_dev_t *dev, ds3231_alarm_t alarms, struct tm *time1,
-        ds3231_alarm1_rate_t option1, struct tm *time2, ds3231_alarm2_rate_t option2)
+                           ds3231_alarm1_rate_t option1, struct tm *time2, ds3231_alarm2_rate_t option2)
 {
     CHECK_ARG(dev);
 
@@ -171,7 +172,7 @@ esp_err_t ds3231_set_alarm(i2c_dev_t *dev, ds3231_alarm_t alarms, struct tm *tim
         data[i++] = (option1 >= DS3231_ALARM1_MATCH_SECMIN ? dec2bcd(time1->tm_min) : DS3231_ALARM_NOTSET);
         data[i++] = (option1 >= DS3231_ALARM1_MATCH_SECMINHOUR ? dec2bcd(time1->tm_hour) : DS3231_ALARM_NOTSET);
         data[i++] = (option1 == DS3231_ALARM1_MATCH_SECMINHOURDAY ? (dec2bcd(time1->tm_wday + 1) & DS3231_ALARM_WDAY) :
-            (option1 == DS3231_ALARM1_MATCH_SECMINHOURDATE ? dec2bcd(time1->tm_mday) : DS3231_ALARM_NOTSET));
+                     (option1 == DS3231_ALARM1_MATCH_SECMINHOURDATE ? dec2bcd(time1->tm_mday) : DS3231_ALARM_NOTSET));
     }
 
     /* alarm 2 data */
@@ -181,7 +182,7 @@ esp_err_t ds3231_set_alarm(i2c_dev_t *dev, ds3231_alarm_t alarms, struct tm *tim
         data[i++] = (option2 >= DS3231_ALARM2_MATCH_MIN ? dec2bcd(time2->tm_min) : DS3231_ALARM_NOTSET);
         data[i++] = (option2 >= DS3231_ALARM2_MATCH_MINHOUR ? dec2bcd(time2->tm_hour) : DS3231_ALARM_NOTSET);
         data[i++] = (option2 == DS3231_ALARM2_MATCH_MINHOURDAY ? (dec2bcd(time2->tm_wday + 1) & DS3231_ALARM_WDAY) :
-            (option2 == DS3231_ALARM2_MATCH_MINHOURDATE ? dec2bcd(time2->tm_mday) : DS3231_ALARM_NOTSET));
+                     (option2 == DS3231_ALARM2_MATCH_MINHOURDATE ? dec2bcd(time2->tm_mday) : DS3231_ALARM_NOTSET));
     }
 
     I2C_DEV_TAKE_MUTEX(dev);

@@ -12,7 +12,8 @@ void ds3231_test(void *pvParameters)
     ESP_ERROR_CHECK(ds3231_init_desc(&dev, 0, CONFIG_EXAMPLE_I2C_MASTER_SDA, CONFIG_EXAMPLE_I2C_MASTER_SCL));
 
     // setup datetime: 2016-10-09 13:50:10
-    struct tm time = {
+    struct tm time =
+    {
         .tm_year = 116, //since 1900 (2016 - 1900)
         .tm_mon  = 9,  // 0-based
         .tm_mday = 9,
@@ -45,7 +46,7 @@ void ds3231_test(void *pvParameters)
          * example. see sdkconfig.defaults.esp8266
          */
         printf("%04d-%02d-%02d %02d:%02d:%02d, %.2f deg Cel\n", time.tm_year + 1900 /*Add 1900 for better readability*/, time.tm_mon + 1,
-            time.tm_mday, time.tm_hour, time.tm_min, time.tm_sec, temp);
+               time.tm_mday, time.tm_hour, time.tm_min, time.tm_sec, temp);
     }
 }
 

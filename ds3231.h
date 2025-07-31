@@ -46,7 +46,7 @@
 #include <i2cdev.h>
 #include <esp_err.h>
 
-#ifdef	__cplusplus
+#ifdef  __cplusplus
 extern "C" {
 #endif
 
@@ -55,7 +55,8 @@ extern "C" {
 /**
  * Alarms
  */
-typedef enum {
+typedef enum
+{
     DS3231_ALARM_NONE = 0,//!< No alarms
     DS3231_ALARM_1,       //!< First alarm
     DS3231_ALARM_2,       //!< Second alarm
@@ -65,7 +66,8 @@ typedef enum {
 /**
  * First alarm rate
  */
-typedef enum {
+typedef enum
+{
     DS3231_ALARM1_EVERY_SECOND = 0,
     DS3231_ALARM1_MATCH_SEC,
     DS3231_ALARM1_MATCH_SECMIN,
@@ -77,7 +79,8 @@ typedef enum {
 /**
  * Second alarm rate
  */
-typedef enum {
+typedef enum
+{
     DS3231_ALARM2_EVERY_MIN = 0,
     DS3231_ALARM2_MATCH_MIN,
     DS3231_ALARM2_MATCH_MINHOUR,
@@ -88,7 +91,8 @@ typedef enum {
 /**
  * Squarewave frequency
  */
-typedef enum {
+typedef enum
+{
     DS3231_SQWAVE_1HZ    = 0x00,
     DS3231_SQWAVE_1024HZ = 0x08,
     DS3231_SQWAVE_4096HZ = 0x10,
@@ -151,7 +155,7 @@ esp_err_t ds3231_get_time(i2c_dev_t *dev, struct tm *time);
  * @return ESP_OK to indicate success
  */
 esp_err_t ds3231_set_alarm(i2c_dev_t *dev, ds3231_alarm_t alarms, struct tm *time1,
-        ds3231_alarm1_rate_t option1, struct tm *time2, ds3231_alarm2_rate_t option2);
+                           ds3231_alarm1_rate_t option1, struct tm *time2, ds3231_alarm2_rate_t option2);
 
 /**
  * @brief Check if oscillator has previously stopped
@@ -347,7 +351,7 @@ esp_err_t ds3231_set_aging_offset(i2c_dev_t *dev, int8_t age);
 esp_err_t ds3231_get_aging_offset(i2c_dev_t *dev, int8_t *age);
 
 
-#ifdef	__cplusplus
+#ifdef  __cplusplus
 }
 #endif
 
